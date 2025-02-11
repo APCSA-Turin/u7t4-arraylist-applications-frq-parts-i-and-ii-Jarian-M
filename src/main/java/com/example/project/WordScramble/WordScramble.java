@@ -14,7 +14,28 @@ public class WordScramble {
    */
   public static String scrambleWord(String word) {
       /* to be implemented in part (a) */
-      return "";
+      String scram = "";
+      String temp = "";
+      if(word.equals("")) {
+        return "";
+      }
+      ArrayList<String> scramble = new ArrayList<>();
+      for(int i = 0; i < word.length(); i++) {
+        scramble.add(word.substring(i, i + 1));
+      }
+      for(int l = 1; l < scramble.size(); l++) {
+        if(scramble.get(l - 1).equals("A")) {
+          if(!scramble.get(l).equals("A")) {
+            temp = scramble.set(l - 1, scramble.get(l));
+            scramble.set(l, temp);
+            l++;
+          }
+        }
+      }
+      for(int j = 0; j < scramble.size(); j++) {
+        scram += scramble.get(j);
+      }
+      return scram;
   }
 
   /** Modifies wordList by replacing each word with its scrambled
@@ -31,6 +52,18 @@ public class WordScramble {
    */
   public static ArrayList<String> scrambleOrRemove(ArrayList<String> wordList) {
       /* to be implemented in part (b) */
-      return new ArrayList<String>();
+      for(int i = 0; i < wordList.size(); i++) {
+        if(wordList.get(i).equals(scrambleWord(wordList.get(i)))) {
+          wordList.remove(wordList.get(i));
+          i--;
+        } else {
+          wordList.set(i, scrambleWord(wordList.get(i)));
+        }
+      }
+      return wordList;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(WordScramble.scrambleWord("APPLE"));
   }
 }

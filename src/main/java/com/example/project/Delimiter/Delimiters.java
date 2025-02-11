@@ -34,15 +34,15 @@ public class Delimiters {
     /** Returns true if the delimiters are balanced and false otherwise, as described in part (b).
      *  Precondition: delimiters contains only valid open and close delimiters.
      */
-    public boolean isBalanced(String[] delimiters) {
+    public boolean isBalanced(ArrayList<String> delimiters) {
         /* to be implemented in part (b) */
         int count1 = 0;
         int count2 = 0;
-        for(int i = 0; i < delimiters.length; i++) {
-            if(delimiters[i].equals(openDel)) {
+        for(int i = 0; i < delimiters.size(); i++) {
+            if(delimiters.get(i).equals(openDel)) {
                 count1++;
             }
-            if(delimiters[i].equals(closeDel)) {
+            if(delimiters.get(i).equals(closeDel)) {
                 count2++;
             }
             if(count2 > count1) {
